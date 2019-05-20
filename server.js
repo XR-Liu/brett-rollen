@@ -17,6 +17,55 @@ app.listen(3000, function(){
     console.log('Server is listening to 3000');
 });
 
+// Sessions initialisieren
+const session = require('express-session');
+app.use(session({ 
+	secret: 'example',
+	resave: false,
+	saveUninitialized: true
+}));
+
+// Sessionvariable setzen
+app.get('/sessionSetzen', function(req, res){
+	req.session['sessionValue'] = Math.floor(Math.random()*100);
+	res.redirect('/index');
+});
+
+// Sessionvariable löschen
+app.get('/sessionLoeschen', function(req, res){
+	delete req.session['sessionValue'];
+	res.redirect('/index');
+});
+
+// Sessionvariable anzeigen
+app.get('/index', function(req, res){
+	if (!req.session['sessionValue']){
+		res.render('index', {message: "Sessionvariable nicht gesetzt"});
+	}
+	else{
+		res.render('index', {message: `Wert der Sessionvariable:
+				${req.session['sessionValue']}`});
+	}
+});
+
+app.get('/', (request, response) => {
+    let authenticated = request.session.authenticated;
+    let username = request.session.username;
+
+    let greeting;
+    if (!authenticated) {
+        greeting = "Willkommen zu deinem individuellem Skateboard!";
+    }
+    else {
+        greeting = `Willkommen, ${username}! Los gehts!`;
+    }
+
+    response.render('index', {
+        isLoggedIn: authenticated,
+        greeting: greeting
+    });
+});
+
 app.get('/login', (request, response) => {
     if (!request.session.authenticated) {
         response.render('login', {
@@ -124,4 +173,10 @@ app.post('/register', (request, response) => {
             });
         }
     });
-});
+}); 
+
+app.get('/impressum', (request, response) => {
+    response.render('impressum')
+})
+
+app.use( express.static( "public" ));
