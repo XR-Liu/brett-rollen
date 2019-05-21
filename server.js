@@ -66,6 +66,7 @@ app.get('/', (request, response) => {
     });
 });
 
+//LOGIN
 app.get('/login', (request, response) => {
     if (!request.session.authenticated) {
         response.render('login', {
@@ -116,6 +117,7 @@ app.post('/login', (request, response) => {
     });
 });
 
+//REGISTRIERUNG
 app.get('/register', (request, response) => {
     if (!request.session.authenticated) {
         response.render('register', {
@@ -177,6 +179,74 @@ app.post('/register', (request, response) => {
 
 app.get('/impressum', (request, response) => {
     response.render('impressum')
-})
+});
+
+//START
+app.get('/start', (request, response) => {
+    response.render('start')
+});
+app.post('/start', function(request, response){
+    response.send('brett')
+});
+
+//BRETT
+app.get('/brett', (request, response) => {
+    response.render('brett')
+});
+app.post('/brett', function(request, response){
+    response.send('achsen')
+});
+app.post('/brett', function(request, response){
+    response.send('start')
+});
+
+//ACHSEN
+app.get('/achsen', (request, response) => {
+    response.render('achsen')
+});
+app.post('/achsen', function(request, response){
+    response.send('rollen')
+});
+app.post('/achsen', function(request, response){
+    response.send('brett')
+});
+
+//ROLLEN
+app.get('/rollen', (request, response) => {
+    response.render('rollen')
+});
+app.post('/rollen', function(request, response){
+    response.send('endprodukt')
+});
+app.post('/rollen', function(request, response){
+    response.send('achsen')
+});
+
+//ENDPRODUKT
+app.get('/endprodukt', (request, response) => {
+    response.render('endprodukt')
+});
+app.post('/endprodukt', function(request, response){
+    response.send('rollen')
+});
+app.post('/endprodukt', function(request, response){
+    response.send('register')
+});
+app.post('/endprodukt', function(request, response){
+    response.send('login')
+});
+
+//BESTELLUNG
+app.get('/bestellung', (request, response) => {
+    response.render('bestellung')
+});
+app.post('/bestellung', function(request, response){
+    response.send('gekauft')
+});
+
+//GEKAUFT
+app.get('/gekauft', (request, response) => {
+    response.render('gekauft')
+});
 
 app.use( express.static( "public" ));
