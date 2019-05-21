@@ -1,0 +1,44 @@
+CREATE TABLE bestellungen (
+number INTEGER PRIMARY KEY AUTOINCREMENT,
+deckWIDTH NUMERIC, 
+deckDESIGN INTEGER,
+deckCOLOR TEXT,
+achsenSIZE TEXT,
+achsenCOLOR TEXT,
+rollenHARDNESS TEXT,
+rollenSIZE INTEGER,
+rollenCOLOR TEXT,
+userNAME TEXT);
+
+CREATE TABLE user (
+number INTEGER PRIMARY KEY AUTOINCREMENT,
+username TEXT,
+street TEXT,
+zip NUMERIC,
+ocation TEXT,
+ban NUMERIC,
+email TEXT,
+password TEXT);
+
+CREATE TABLE achsen ( number
+INTEGER PRIMARY KEY
+AUTOINCREMENT, size TEXT);
+
+CREATE TABLE decks ( number
+INTEGER PRIMARY KEY
+AUTOINCREMENT, width NUMERIC,
+design INTERGER);
+
+CREATE TABLE farben ( number
+INTEGER PRIMARY KEY
+AUTOINCREMENT, colors TEXT);
+
+CREATE TABLE rollen ( number
+INTEGER PRIMARY KEY
+AUTOINCREMENT, hardness TEXT,
+size INTEGER );
+
+CREATE TABLE
+sqlite_sequence(name,seq);
+
+
