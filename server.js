@@ -188,6 +188,9 @@ app.get('/start', (request, response) => {
 app.post('/start', function(request, response){
     response.send('brett')
 });
+app.post('/start', function(request, response){
+    response.send('impressum')
+});
 
 //BRETT
 app.get('/brett', (request, response) => {
